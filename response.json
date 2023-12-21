@@ -1,0 +1,993 @@
+[
+    {
+        "Name": "apis/storage.k8s.io/v1",
+        "ApiVersionPath": "apis/storage.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "VolumeAttachmentList",
+                "Description": "VolumeAttachmentList is a collection of VolumeAttachment objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "CSIStorageCapacity",
+                "Description": "CSIStorageCapacity stores the result of one CSI GetCapacity call. For a given StorageClass, this describes the available capacity in a particular topology segment.  This can be used when considering where to instantiate new PersistentVolumes.\n\nFor example this can express things like: - StorageClass \"standard\" has \"1234 GiB\" available in \"topology.kubernetes.io/zone=us-east1\" - StorageClass \"localssd\" has \"10 GiB\" available in \"kubernetes.io/hostname=knode-abc123\"\n\nThe following three cases all imply that no capacity is available for a certain combination: - no object exists with suitable topology and storage class name - such an object exists, but the capacity is unset - such an object exists, but the capacity is zero\n\nThe producer of these objects can decide which approach is more suitable.\n\nThey are consumed by the kube-scheduler when a CSI driver opts into capacity-aware scheduling with CSIDriverSpec.StorageCapacity. The scheduler compares the MaximumVolumeSize against the requested size of pending volumes to filter out unsuitable nodes. If MaximumVolumeSize is unset, it falls back to a comparison against the less precise Capacity. If that is also unset, the scheduler assumes that capacity is insufficient and tries some other node.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "CSIDriver",
+                "Description": "CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "CSINode",
+                "Description": "CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object.",
+                "Type": "object"
+            },
+            {
+                "Name": "CSIDriverList",
+                "Description": "CSIDriverList is a collection of CSIDriver objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "CSIStorageCapacityList",
+                "Description": "CSIStorageCapacityList is a collection of CSIStorageCapacity objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "StorageClassList",
+                "Description": "StorageClassList is a collection of storage classes.",
+                "Type": "object"
+            },
+            {
+                "Name": "VolumeAttachment",
+                "Description": "VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node.\n\nVolumeAttachment objects are non-namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "StorageClass",
+                "Description": "StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned.\n\nStorageClasses are non-namespaced; the name of the storage class according to etcd is in ObjectMeta.Name.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "CSINodeList",
+                "Description": "CSINodeList is a collection of CSINode objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/discovery.k8s.io/v1",
+        "ApiVersionPath": "apis/discovery.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "EndpointSlice",
+                "Description": "EndpointSlice represents a subset of the endpoints that implement a service. For a given service there may be multiple EndpointSlice objects, selected by labels, which must be joined to produce the full set of endpoints.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "EndpointSliceList",
+                "Description": "EndpointSliceList represents a list of endpoint slices",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/networking.k8s.io/v1",
+        "ApiVersionPath": "apis/networking.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "NetworkPolicy",
+                "Description": "NetworkPolicy describes what network traffic is allowed for a set of Pods",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "IngressList",
+                "Description": "IngressList is a collection of Ingress.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "NetworkPolicyList",
+                "Description": "NetworkPolicyList is a list of NetworkPolicy objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "IngressClass",
+                "Description": "IngressClass represents the class of the Ingress, referenced by the Ingress Spec. The `ingressclass.kubernetes.io/is-default-class` annotation can be used to indicate that an IngressClass should be considered default. When a single IngressClass resource has this annotation set to true, new Ingress resources without a class specified will be assigned this default class.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "IngressClassList",
+                "Description": "IngressClassList is a collection of IngressClasses.",
+                "Type": "object"
+            },
+            {
+                "Name": "Ingress",
+                "Description": "Ingress is a collection of rules that allow inbound connections to reach the endpoints defined by a backend. An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/policy/v1",
+        "ApiVersionPath": "apis/policy/v1",
+        "Kinds": [
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "PodDisruptionBudget",
+                "Description": "PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "PodDisruptionBudgetList",
+                "Description": "PodDisruptionBudgetList is a collection of PodDisruptionBudgets.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/events.k8s.io/v1",
+        "ApiVersionPath": "apis/events.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "Event",
+                "Description": "Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "EventList",
+                "Description": "EventList is a list of Event objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/apps/v1",
+        "ApiVersionPath": "apis/apps/v1",
+        "Kinds": [
+            {
+                "Name": "DaemonSet",
+                "Description": "DaemonSet represents the configuration of a daemon set.",
+                "Type": "object"
+            },
+            {
+                "Name": "Deployment",
+                "Description": "Deployment enables declarative updates for Pods and ReplicaSets.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeploymentList",
+                "Description": "DeploymentList is a list of Deployments.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "DaemonSetList",
+                "Description": "DaemonSetList is a collection of daemon sets.",
+                "Type": "object"
+            },
+            {
+                "Name": "ControllerRevisionList",
+                "Description": "ControllerRevisionList is a resource containing a list of ControllerRevision objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "ControllerRevision",
+                "Description": "ControllerRevision implements an immutable snapshot of state data. Clients are responsible for serializing and deserializing the objects that contain their internal state. Once a ControllerRevision has been successfully created, it can not be updated. The API Server will fail validation of all requests that attempt to mutate the Data field. ControllerRevisions may, however, be deleted. Note that, due to its use by both the DaemonSet and StatefulSet controllers for update and rollback, this object is beta. However, it may be subject to name and representation changes in future releases, and clients should not depend on its stability. It is primarily for internal use by controllers.",
+                "Type": "object"
+            },
+            {
+                "Name": "PersistentVolumeClaim",
+                "Description": "PersistentVolumeClaim is a user's request for and claim to a persistent volume",
+                "Type": "object"
+            },
+            {
+                "Name": "ReplicaSetList",
+                "Description": "ReplicaSetList is a collection of ReplicaSets.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "StatefulSet",
+                "Description": "StatefulSet represents a set of pods with consistent identities. Identities are defined as:\n  - Network: A single stable DNS and hostname.\n  - Storage: As many VolumeClaims as requested.\n\nThe StatefulSet guarantees that a given network identity will always map to the same storage identity.",
+                "Type": "object"
+            },
+            {
+                "Name": "Scale",
+                "Description": "Scale represents a scaling request for a resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "StatefulSetList",
+                "Description": "StatefulSetList is a collection of StatefulSets.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "ReplicaSet",
+                "Description": "ReplicaSet ensures that a specified number of pod replicas are running at any given time.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/autoscaling/v2",
+        "ApiVersionPath": "apis/autoscaling/v2",
+        "Kinds": [
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "HorizontalPodAutoscalerList",
+                "Description": "HorizontalPodAutoscalerList is a list of horizontal pod autoscaler objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "HorizontalPodAutoscaler",
+                "Description": "HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis",
+        "ApiVersionPath": "apis",
+        "Kinds": [
+            {
+                "Name": "APIGroup",
+                "Description": "APIGroup contains the name, the supported versions, and the preferred version of a group.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIGroupList",
+                "Description": "APIGroupList is a list of APIGroup, to allow clients to discover the API at /apis.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/certificates.k8s.io/v1",
+        "ApiVersionPath": "apis/certificates.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "CertificateSigningRequestList",
+                "Description": "CertificateSigningRequestList is a collection of CertificateSigningRequest objects",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "CertificateSigningRequest",
+                "Description": "CertificateSigningRequest objects provide a mechanism to obtain x509 certificates by submitting a certificate signing request, and having it asynchronously approved and issued.\n\nKubelets use this API to obtain:\n 1. client certificates to authenticate to kube-apiserver (with the \"kubernetes.io/kube-apiserver-client-kubelet\" signerName).\n 2. serving certificates for TLS endpoints kube-apiserver can connect to securely (with the \"kubernetes.io/kubelet-serving\" signerName).\n\nThis API can be used to request client certificates to authenticate to kube-apiserver (with the \"kubernetes.io/kube-apiserver-client\" signerName), or to obtain certificates from custom non-Kubernetes signers.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/coordination.k8s.io/v1",
+        "ApiVersionPath": "apis/coordination.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "LeaseList",
+                "Description": "LeaseList is a list of Lease objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "Lease",
+                "Description": "Lease defines a lease concept.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/authorization.k8s.io/v1",
+        "ApiVersionPath": "apis/authorization.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "SubjectAccessReview",
+                "Description": "SubjectAccessReview checks whether or not a user or group can perform an action.",
+                "Type": "object"
+            },
+            {
+                "Name": "SelfSubjectAccessReview",
+                "Description": "SelfSubjectAccessReview checks whether or the current user can perform an action.  Not filling in a spec.namespace means \"in all namespaces\".  Self is a special case, because users should always be able to check whether they can perform an action",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "LocalSubjectAccessReview",
+                "Description": "LocalSubjectAccessReview checks whether or not a user or group can perform an action in a given namespace. Having a namespace scoped resource makes it much easier to grant namespace scoped policy that includes permissions checking.",
+                "Type": "object"
+            },
+            {
+                "Name": "SelfSubjectRulesReview",
+                "Description": "SelfSubjectRulesReview enumerates the set of actions the current user can perform within a namespace. The returned list of actions may be incomplete depending on the server's authorization mode, and any errors experienced during the evaluation. SelfSubjectRulesReview should be used by UIs to show/hide actions, or to quickly let an end user reason about their permissions. It should NOT Be used by external systems to drive authorization decisions as this raises confused deputy, cache lifetime/revocation, and correctness concerns. SubjectAccessReview, and LocalAccessReview are the correct way to defer authorization decisions to the API server.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/flowcontrol.apiserver.k8s.io",
+        "ApiVersionPath": "apis/flowcontrol.apiserver.k8s.io",
+        "Kinds": [
+            {
+                "Name": "APIGroup",
+                "Description": "APIGroup contains the name, the supported versions, and the preferred version of a group.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "api",
+        "ApiVersionPath": "api",
+        "Kinds": [
+            {
+                "Name": "APIVersions",
+                "Description": "APIVersions lists the versions that are available, to allow clients to discover the API at /api, which is the root path of the legacy v1 API.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/scheduling.k8s.io/v1",
+        "ApiVersionPath": "apis/scheduling.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "PriorityClass",
+                "Description": "PriorityClass defines mapping from a priority class name to the priority integer value. The value can be any valid integer.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "PriorityClassList",
+                "Description": "PriorityClassList is a collection of priority classes.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/admissionregistration.k8s.io/v1",
+        "ApiVersionPath": "apis/admissionregistration.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "ValidatingWebhookConfigurationList",
+                "Description": "ValidatingWebhookConfigurationList is a list of ValidatingWebhookConfiguration.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "ValidatingWebhookConfiguration",
+                "Description": "ValidatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and object without changing it.",
+                "Type": "object"
+            },
+            {
+                "Name": "MutatingWebhookConfiguration",
+                "Description": "MutatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and may change the object.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "MutatingWebhookConfigurationList",
+                "Description": "MutatingWebhookConfigurationList is a list of MutatingWebhookConfiguration.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/node.k8s.io/v1",
+        "ApiVersionPath": "apis/node.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "RuntimeClassList",
+                "Description": "RuntimeClassList is a list of RuntimeClass objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "RuntimeClass",
+                "Description": "RuntimeClass defines a class of container runtime supported in the cluster. The RuntimeClass is used to determine which container runtime is used to run all containers in a pod. RuntimeClasses are manually defined by a user or cluster provisioner, and referenced in the PodSpec. The Kubelet is responsible for resolving the RuntimeClassName reference before running the pod.  For more details, see https://kubernetes.io/docs/concepts/containers/runtime-class/",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/authentication.k8s.io/v1",
+        "ApiVersionPath": "apis/authentication.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "TokenReview",
+                "Description": "TokenReview attempts to authenticate a token to a known user. Note: TokenReview requests may be cached by the webhook token authenticator plugin in the kube-apiserver.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/batch/v1",
+        "ApiVersionPath": "apis/batch/v1",
+        "Kinds": [
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "CronJob",
+                "Description": "CronJob represents the configuration of a single cron job.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "Job",
+                "Description": "Job represents the configuration of a single job.",
+                "Type": "object"
+            },
+            {
+                "Name": "CronJobList",
+                "Description": "CronJobList is a collection of cron jobs.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "JobList",
+                "Description": "JobList is a collection of jobs.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "api/v1",
+        "ApiVersionPath": "api/v1",
+        "Kinds": [
+            {
+                "Name": "ReplicationController",
+                "Description": "ReplicationController represents the configuration of a replication controller.",
+                "Type": "object"
+            },
+            {
+                "Name": "ComponentStatus",
+                "Description": "ComponentStatus (and ComponentStatusList) holds the cluster validation info. Deprecated: This API is deprecated in v1.19+",
+                "Type": "object"
+            },
+            {
+                "Name": "ComponentStatusList",
+                "Description": "Status of all the conditions for the component as a list of ComponentStatus objects. Deprecated: This API is deprecated in v1.19+",
+                "Type": "object"
+            },
+            {
+                "Name": "ResourceQuota",
+                "Description": "ResourceQuota sets aggregate quota restrictions enforced per namespace",
+                "Type": "object"
+            },
+            {
+                "Name": "EndpointsList",
+                "Description": "EndpointsList is a list of endpoints.",
+                "Type": "object"
+            },
+            {
+                "Name": "EventList",
+                "Description": "EventList is a list of events.",
+                "Type": "object"
+            },
+            {
+                "Name": "LimitRangeList",
+                "Description": "LimitRangeList is a list of LimitRange items.",
+                "Type": "object"
+            },
+            {
+                "Name": "PersistentVolume",
+                "Description": "PersistentVolume (PV) is a storage resource provisioned by an administrator. It is analogous to a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes",
+                "Type": "object"
+            },
+            {
+                "Name": "Pod",
+                "Description": "Pod is a collection of containers that can run on a host. This resource is created by clients and scheduled onto hosts.",
+                "Type": "object"
+            },
+            {
+                "Name": "ConfigMap",
+                "Description": "ConfigMap holds configuration data for pods to consume.",
+                "Type": "object"
+            },
+            {
+                "Name": "TokenRequest",
+                "Description": "TokenRequest requests a token for a given service account.",
+                "Type": "object"
+            },
+            {
+                "Name": "Binding",
+                "Description": "Binding ties one object to another; for example, a pod is bound to a node by a scheduler. Deprecated in 1.7, please use the bindings subresource of pods instead.",
+                "Type": "object"
+            },
+            {
+                "Name": "PodTemplate",
+                "Description": "PodTemplate describes a template for creating copies of a predefined pod.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "Secret",
+                "Description": "Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes.",
+                "Type": "object"
+            },
+            {
+                "Name": "ConfigMapList",
+                "Description": "ConfigMapList is a resource containing a list of ConfigMap objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "ServiceAccountList",
+                "Description": "ServiceAccountList is a list of ServiceAccount objects",
+                "Type": "object"
+            },
+            {
+                "Name": "PodTemplateList",
+                "Description": "PodTemplateList is a list of PodTemplates.",
+                "Type": "object"
+            },
+            {
+                "Name": "Node",
+                "Description": "Node is a worker node in Kubernetes. Each node will have a unique identifier in the cache (i.e. in etcd).",
+                "Type": "object"
+            },
+            {
+                "Name": "NamespaceList",
+                "Description": "NamespaceList is a list of Namespaces.",
+                "Type": "object"
+            },
+            {
+                "Name": "PersistentVolumeClaimList",
+                "Description": "PersistentVolumeClaimList is a list of PersistentVolumeClaim items.",
+                "Type": "object"
+            },
+            {
+                "Name": "PodList",
+                "Description": "PodList is a list of Pods.",
+                "Type": "object"
+            },
+            {
+                "Name": "ServiceList",
+                "Description": "ServiceList holds a list of services.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "Scale",
+                "Description": "Scale represents a scaling request for a resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "Endpoints",
+                "Description": "Endpoints is a collection of endpoints that implement the actual service. Example:\n\n\t Name: \"mysvc\",\n\t Subsets: [\n\t   {\n\t     Addresses: [{\"ip\": \"10.10.1.1\"}, {\"ip\": \"10.10.2.2\"}],\n\t     Ports: [{\"name\": \"a\", \"port\": 8675}, {\"name\": \"b\", \"port\": 309}]\n\t   },\n\t   {\n\t     Addresses: [{\"ip\": \"10.10.3.3\"}],\n\t     Ports: [{\"name\": \"a\", \"port\": 93}, {\"name\": \"b\", \"port\": 76}]\n\t   },\n\t]",
+                "Type": "object"
+            },
+            {
+                "Name": "Service",
+                "Description": "Service is a named abstraction of software service (for example, mysql) consisting of local port (for example 3306) that the proxy listens on, and the selector that determines which pods will answer requests sent through the proxy.",
+                "Type": "object"
+            },
+            {
+                "Name": "LimitRange",
+                "Description": "LimitRange sets resource usage limits for each kind of resource in a Namespace.",
+                "Type": "object"
+            },
+            {
+                "Name": "PersistentVolumeClaim",
+                "Description": "PersistentVolumeClaim is a user's request for and claim to a persistent volume",
+                "Type": "object"
+            },
+            {
+                "Name": "ResourceQuotaList",
+                "Description": "ResourceQuotaList is a list of ResourceQuota items.",
+                "Type": "object"
+            },
+            {
+                "Name": "Namespace",
+                "Description": "Namespace provides a scope for Names. Use of multiple namespaces is optional.",
+                "Type": "object"
+            },
+            {
+                "Name": "ServiceAccount",
+                "Description": "ServiceAccount binds together: * a name, understood by users, and perhaps by peripheral systems, for an identity * a principal that can be authenticated and authorized * a set of secrets",
+                "Type": "object"
+            },
+            {
+                "Name": "PersistentVolumeList",
+                "Description": "PersistentVolumeList is a list of PersistentVolume items.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "SecretList",
+                "Description": "SecretList is a list of Secret.",
+                "Type": "object"
+            },
+            {
+                "Name": "Event",
+                "Description": "Event is a report of an event somewhere in the cluster.  Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.",
+                "Type": "object"
+            },
+            {
+                "Name": "Eviction",
+                "Description": "Eviction evicts a pod from its node subject to certain policies and safety constraints. This is a subresource of Pod.  A request to cause such an eviction is created by POSTing to .../pods/\u003cpod name\u003e/evictions.",
+                "Type": "object"
+            },
+            {
+                "Name": "NodeList",
+                "Description": "NodeList is the whole list of all Nodes which have been registered with master.",
+                "Type": "object"
+            },
+            {
+                "Name": "ReplicationControllerList",
+                "Description": "ReplicationControllerList is a collection of replication controllers.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/apiextensions.k8s.io/v1",
+        "ApiVersionPath": "apis/apiextensions.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "CustomResourceDefinitionList",
+                "Description": "CustomResourceDefinitionList is a list of CustomResourceDefinition objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "CustomResourceDefinition",
+                "Description": "CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format \u003c.spec.name\u003e.\u003c.spec.group\u003e.",
+                "Type": "object"
+            },
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            }
+        ]
+    },
+    {
+        "Name": "apis/rbac.authorization.k8s.io/v1",
+        "ApiVersionPath": "apis/rbac.authorization.k8s.io/v1",
+        "Kinds": [
+            {
+                "Name": "APIResourceList",
+                "Description": "APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced.",
+                "Type": "object"
+            },
+            {
+                "Name": "Role",
+                "Description": "Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding.",
+                "Type": "object"
+            },
+            {
+                "Name": "WatchEvent",
+                "Description": "Event represents a single event to a watched resource.",
+                "Type": "object"
+            },
+            {
+                "Name": "ClusterRole",
+                "Description": "ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding.",
+                "Type": "object"
+            },
+            {
+                "Name": "ClusterRoleBindingList",
+                "Description": "ClusterRoleBindingList is a collection of ClusterRoleBindings",
+                "Type": "object"
+            },
+            {
+                "Name": "Status",
+                "Description": "Status is a return value for calls that don't return other objects.",
+                "Type": "object"
+            },
+            {
+                "Name": "ClusterRoleList",
+                "Description": "ClusterRoleList is a collection of ClusterRoles",
+                "Type": "object"
+            },
+            {
+                "Name": "RoleBinding",
+                "Description": "RoleBinding references a role, but does not contain it.  It can reference a Role in the same namespace or a ClusterRole in the global namespace. It adds who information via Subjects and namespace information by which namespace it exists in.  RoleBindings in a given namespace only have effect in that namespace.",
+                "Type": "object"
+            },
+            {
+                "Name": "RoleList",
+                "Description": "RoleList is a collection of Roles",
+                "Type": "object"
+            },
+            {
+                "Name": "ClusterRoleBinding",
+                "Description": "ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject.",
+                "Type": "object"
+            },
+            {
+                "Name": "RoleBindingList",
+                "Description": "RoleBindingList is a collection of RoleBindings",
+                "Type": "object"
+            },
+            {
+                "Name": "DeleteOptions",
+                "Description": "DeleteOptions may be provided when deleting an API object.",
+                "Type": "object"
+            }
+        ]
+    }
+]

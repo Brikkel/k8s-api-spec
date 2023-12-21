@@ -41,16 +41,16 @@ func GetSchema(kubeAPIAddress string, resource string) interface{} {
 	swaggerData := getSwaggerData(kubeAPIAddress)
 	// Find and print the "resource" schema as JSON
 	definitions := swaggerData["definitions"].(map[string]interface{})
-	deploymentSchema := findSchemaByKind(definitions, resource)
+	resourceSchema := findSchemaByKind(definitions, resource)
 
-	if deploymentSchema != nil {
+	if resourceSchema != nil {
 
 		// This is how the schema can be navigated
-		//fmt.Println(deploymentSchema.(map[string]interface{})["properties"].(map[string]interface{})["spec"].(map[string]interface{})["$ref"])
+		//fmt.Println(resourceSchema.(map[string]interface{})["properties"].(map[string]interface{})["spec"].(map[string]interface{})["$ref"])
 
-		return deploymentSchema
+		return resourceSchema
 	} else {
-		fmt.Println("Deployment schema not found in Swagger JSON documentation")
+		fmt.Println("Resource schema not found in Swagger JSON documentation")
 		return nil
 	}
 }
