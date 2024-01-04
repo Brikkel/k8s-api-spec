@@ -46,7 +46,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot](https://github.com/Brikkel/k8s-api-spec/blob/master/images/documentation.jpeg?raw=true)
 
 This package allows you to navigate the Open API specification of the kubernetes api to find details on kubernetes resources.
 
