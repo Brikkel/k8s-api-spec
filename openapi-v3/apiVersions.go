@@ -1,6 +1,9 @@
-// test 3
+// A package that ontains function to interprate the Kubernetes openapi spec v3
 //
-// test 3.1
+/*
+The k8s-API-Spec-openapiv3 GO package will allow users to effectively find kubernetes
+resources and their information. An exmple usage is to navigate all the resources that can be described in a configuration .yaml file.
+*/
 package openapiv3
 
 import (

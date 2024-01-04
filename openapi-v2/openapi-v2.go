@@ -1,3 +1,4 @@
+// Alpha, Contains function to interprate the Kubernetes openapi spec v2
 package openapiv2
 
 import (

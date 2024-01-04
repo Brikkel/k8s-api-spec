@@ -1,3 +1,4 @@
+// Alpha, these functions talk directly to the kubernetes api, not the apispec
 package clusterapi
 
 import (

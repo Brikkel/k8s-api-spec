@@ -1,6 +1,3 @@
-// test 2
-//
-// test 2.1
 package openapiv3
 
 import (
