@@ -100,7 +100,7 @@ For usage explore the GoDoc documentation.
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add kinds function
+- [x] Add kinds function
 - [ ] Add parameter function
     - [ ] level 1
     - [ ] recursive
