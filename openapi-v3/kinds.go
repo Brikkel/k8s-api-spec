@@ -35,6 +35,11 @@ func GetAllKinds(endpointURL string) ([]ApiVersion, error) {
 			return nil, fmt.Errorf("%w", err)
 		}
 
+		// Skip api and apis without versions, since these do not contain resources
+		if path == "api" || path == "apis" {
+			continue
+		}
+
 		var newApiVersion ApiVersion
 		newApiVersion.Name = path
 		newApiVersion.ApiVersionPath = path
@@ -58,7 +63,9 @@ func GetKindsPerVersion(endpointURL, path string) ([]Kind, error) {
 	}
 
 	for keyName, schema := range schemas {
-		if len(schema.XKubernetesGroupVersionKind) > 0 {
+
+		// Status "kinds" should be excluded, as they are not a deployable resource
+		if len(schema.XKubernetesGroupVersionKind) > 0 && schema.XKubernetesGroupVersionKind[0].Kind != "Status" {
 			// Resource has "x-kubernetes-group-version-kind" parameter
 			//filteredSchemas[resourceName] = schema
 			var newKind Kind

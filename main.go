@@ -30,19 +30,19 @@ func testOpenapiv3() {
 
 	// KINDS
 
-	// kinds, err := openapiv3.GetAllKinds("http://localhost:8001")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
+	kinds, err := oav3.GetAllKinds(endpointURL)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
-	// jsonKinds, err := json.Marshal(kinds)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
+	jsonKinds, err := json.Marshal(kinds)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
-	// fmt.Println(string(jsonKinds))
+	fmt.Println(string(jsonKinds))
 
 	// schema, err := oav3.GetSchema(endpointURL, "/openapi/v3/api/v1", "io.k8s.api.core.v1.Pod")
 	// if err != nil {
@@ -73,19 +73,19 @@ func testOpenapiv3() {
 	// fmt.Println(string(jsonSchema))
 
 	// PARAMETERS
-	podParameters, err := oav3.GetResource(endpointURL, "/openapi/v3/api/v1", "io.k8s.api.core.v1.Pod")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	// podParameters, err := oav3.GetResource(endpointURL, "/openapi/v3/api/v1", "io.k8s.api.core.v1.Pod")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
 
-	jsonPodParameters, err := json.Marshal(podParameters)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	// jsonPodParameters, err := json.Marshal(podParameters)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
 
-	fmt.Println(string(jsonPodParameters))
+	// fmt.Println(string(jsonPodParameters))
 }
 
 func testOpenapiv2() {
