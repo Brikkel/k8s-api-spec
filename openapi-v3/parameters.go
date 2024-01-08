@@ -6,12 +6,12 @@ import (
 )
 
 type Resource struct {
-	ResourceName string
-	Path         string
-	Name         string
-	Description  string
-	Type         string
-	Parameters   []Parameter
+	FullResourceName string
+	Path             string
+	Name             string
+	Description      string
+	Type             string
+	Parameters       []Parameter
 }
 
 type Parameter struct {
@@ -29,7 +29,7 @@ type Parameter struct {
 }
 
 // GetResource returns a resource from a map of schemas
-func GetResource(endpointURL, path, resourceName string) (*Resource, error) {
+func GetResource(endpointURL, path, FullResourceName string) (*Resource, error) {
 
 	// get the schemas for the path
 	schemas, err := GetSchemas(endpointURL, path)
@@ -41,14 +41,14 @@ func GetResource(endpointURL, path, resourceName string) (*Resource, error) {
 	var newResource Resource
 
 	// get the schema for the resource
-	schema, ok := schemas[resourceName]
+	schema, ok := schemas[FullResourceName]
 	if !ok {
-		return nil, fmt.Errorf("resource %s not found", resourceName)
+		return nil, fmt.Errorf("resource %s not found", FullResourceName)
 	}
 
 	// set the properties of the resource
-	newResource.ResourceName = resourceName
-	newResource.Name = getSimpleName(resourceName)
+	newResource.FullResourceName = FullResourceName
+	newResource.Name = getSimpleName(FullResourceName)
 	newResource.Path = path
 	newResource.Description = schema.Description
 	newResource.Type = schema.Type
