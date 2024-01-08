@@ -2,6 +2,7 @@ package openapiv3
 
 import (
 	"fmt"
+	"net/url"
 	"strings"
 )
 
@@ -30,9 +31,14 @@ type Parameter struct {
 
 // GetResource returns a resource from a map of schemas
 func GetResource(endpointURL, path, FullResourceName string) (*Resource, error) {
+	// get the path from the raw path
+	rawPath, err := url.PathUnescape(path)
+	if err != nil {
+		return nil, err
+	}
 
 	// get the schemas for the path
-	schemas, err := GetSchemas(endpointURL, path)
+	schemas, err := GetSchemas(endpointURL, rawPath)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +55,7 @@ func GetResource(endpointURL, path, FullResourceName string) (*Resource, error) 
 	// set the properties of the resource
 	newResource.FullResourceName = FullResourceName
 	newResource.Name = getSimpleName(FullResourceName)
-	newResource.Path = path
+	newResource.Path = rawPath
 	newResource.Description = schema.Description
 	newResource.Type = schema.Type
 
