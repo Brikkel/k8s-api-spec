@@ -44,7 +44,7 @@ func GetAPIVersions(endpointURL string) ([]string, error) {
 // it then parses through the object to obtain the paths to the different API versions.
 func GetOpenAPIV3Paths(endpointURL string) ([]string, error) {
 	// Acquire the various openapi v3 paths
-	body, err := getJson(endpointURL + "/openapi/v3")
+	body, err := getJsonResponse(endpointURL + "/openapi/v3")
 	if err != nil {
 		return nil, fmt.Errorf("Error retreiving openapi v3 paths: %w", err)
 	}
@@ -117,26 +117,4 @@ func findHighestNonBetaVersion(paths []string) string {
 		return nonBetaPaths[0]
 	}
 	return ""
-}
-
-///////////////////////
-// Depricated
-///////////////////////
-
-func getAPIVersionPaths(endpointURL string) ([]string, error) {
-	paths, err := GetOpenAPIV3Paths(endpointURL)
-	if err != nil {
-		return nil, fmt.Errorf("Can not acquire API paths: %w", err)
-	}
-
-	var APIVersionPaths []string
-
-	for _, path := range paths {
-		parts := strings.Split(path, "/")
-		if len(parts) > 1 {
-			APIVersionPaths = append(APIVersionPaths, path)
-		}
-	}
-
-	return APIVersionPaths, nil
 }

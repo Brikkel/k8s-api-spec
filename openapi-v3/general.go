@@ -7,7 +7,7 @@ import (
 )
 
 // Get the Json object from a provided endpoint
-func getJson(endpointURL string) ([]byte, error) {
+func getJsonResponse(endpointURL string) ([]byte, error) {
 	// Make an HTTP GET request
 	resp, err := http.Get(endpointURL)
 	if err != nil {

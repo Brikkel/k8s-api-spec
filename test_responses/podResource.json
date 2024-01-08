@@ -1,0 +1,73 @@
+{
+    "ResourceName": "io.k8s.api.core.v1.Pod",
+    "Name": "Pod",
+    "Description": "Pod is a collection of containers that can run on a host. This resource is created by clients and scheduled onto hosts.",
+    "Type": "object",
+    "Parameters": [
+        {
+            "Name": "status",
+            "Description": "Most recently observed status of the pod. This data may not be up to date. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+            "Type": "",
+            "Required": false,
+            "Default": "map[]",
+            "ResourceReference": "",
+            "Items": {
+                "Default": "",
+                "ResourceReference": "",
+                "Type": ""
+            }
+        },
+        {
+            "Name": "apiVersion",
+            "Description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+            "Type": "string",
+            "Required": false,
+            "Default": "",
+            "ResourceReference": "",
+            "Items": {
+                "Default": "",
+                "ResourceReference": "",
+                "Type": ""
+            }
+        },
+        {
+            "Name": "kind",
+            "Description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+            "Type": "string",
+            "Required": false,
+            "Default": "",
+            "ResourceReference": "",
+            "Items": {
+                "Default": "",
+                "ResourceReference": "",
+                "Type": ""
+            }
+        },
+        {
+            "Name": "metadata",
+            "Description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata",
+            "Type": "",
+            "Required": false,
+            "Default": "map[]",
+            "ResourceReference": "",
+            "Items": {
+                "Default": "",
+                "ResourceReference": "",
+                "Type": ""
+            }
+        },
+        {
+            "Name": "spec",
+            "Description": "Specification of the desired behavior of the pod. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+            "Type": "",
+            "Required": false,
+            "Default": "map[]",
+            "ResourceReference": "",
+            "Items": {
+                "Default": "",
+                "ResourceReference": "",
+                "Type": ""
+            }
+        }
+    ]
+}

@@ -6,7 +6,7 @@ import (
 
 	clusterapi "github.com/brikkel/k8s-api-spec/cluster-api"
 	openapiv2 "github.com/brikkel/k8s-api-spec/openapi-v2"
-	openapiv3 "github.com/brikkel/k8s-api-spec/openapi-v3"
+	oav3 "github.com/brikkel/k8s-api-spec/openapi-v3"
 )
 
 // Define a struct to store information about the field in Pods.
@@ -26,50 +26,66 @@ func main() {
 }
 
 func testOpenapiv3() {
-	// paths, err := openapiv3.GetOpenAPIV3Paths("http://localhost:8001")
+	endpointURL := "http://localhost:8001"
+
+	// KINDS
+
+	// kinds, err := openapiv3.GetAllKinds("http://localhost:8001")
 	// if err != nil {
 	// 	fmt.Println(err)
 	// 	return
 	// }
 
-	// fmt.Println(paths)
-
-	// fmt.Println(openapiv3.GetAllKinds("http://localhost:8001"))
-
-	// openapiv3.GetKindsPerVersion("http://localhost:8001", "/openapi/v3/api/v1")
-	// openapiv3.GetKindsPerVersion("http://localhost:8001", "/openapi/v3/apis/apps/v1")
-
-	// transform schemas into json
-	// schemasJson, err := openapiv3.GetSchemasJson("http://localhost:8001", "/openapi/v3/api/v1")
+	// jsonKinds, err := json.Marshal(kinds)
 	// if err != nil {
 	// 	fmt.Println(err)
 	// 	return
 	// }
 
-	// fmt.Println(schemasJson)
+	// fmt.Println(string(jsonKinds))
 
-	// description, err := openapiv3.GetKindDescription("http://localhost:8001", "/openapi/v3/api/v1", "Pod")
+	// schema, err := oav3.GetSchema(endpointURL, "/openapi/v3/api/v1", "io.k8s.api.core.v1.Pod")
 	// if err != nil {
 	// 	fmt.Println(err)
 	// 	return
 	// }
 
-	// fmt.Println(description)
+	// jsonSchema, err := json.Marshal(schema)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
 
-	kinds, err := openapiv3.GetAllKinds("http://localhost:8001")
+	// fmt.Println(string(jsonSchema))
+
+	// newSchema, err := oav3.GetSchema(endpointURL, "/openapi/v3/api/v1", "io.k8s.api.core.v1.Pod")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+
+	// jsonSchema, err := json.Marshal(newSchema)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+
+	// fmt.Println(string(jsonSchema))
+
+	// PARAMETERS
+	podParameters, err := oav3.GetResource(endpointURL, "/openapi/v3/api/v1", "io.k8s.api.core.v1.Pod")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	jsonKinds, err := json.Marshal(kinds)
+	jsonPodParameters, err := json.Marshal(podParameters)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	fmt.Println(string(jsonKinds))
-
+	fmt.Println(string(jsonPodParameters))
 }
 
 func testOpenapiv2() {

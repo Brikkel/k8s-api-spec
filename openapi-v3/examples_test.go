@@ -4,8 +4,8 @@ import (
 	"fmt"
 )
 
-func ExampleGetKindDescription() {
-	descr, err := GetKindDescription("http://localhost:8001", "/openapi/v3/api/v1", "Pod")
+func ExampleGetKindDescriptionByName() {
+	descr, err := GetKindDescriptionByName("http://localhost:8001", "/openapi/v3/api/v1", "Pod")
 	if err != nil {
 		panic(err)
 	}
